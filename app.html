@@ -242,9 +242,9 @@
         .secondary-btn { background: white; color: var(--text-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 24px; font-weight: 600; font-size: 14px; flex: 1; transition: 0.2s; }
         .secondary-btn:hover { background: #F9FAFB; }
         .detail-row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--border-color); }
-        .detail-label { color: var(--text-secondary); font-size: 13px; flex: 1; }
-        .detail-val { font-weight: 500; font-size: 14px; flex: 2; display: flex; align-items: center; justify-content: space-between; }
-        .copy-icon { color: var(--np-red); width: 16px; height: 16px; cursor: pointer; }
+        .detail-label { color: var(--text-secondary); font-size: 13px; flex: 1; line-height: 1.5; }
+        .detail-val { font-weight: 500; font-size: 14px; flex: 2; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; line-height: 1.5; word-break: break-word; }
+        .copy-icon { color: var(--np-red); width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; margin-top: 2px; }
         
         .contract-card { border: 1px solid var(--border-color); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
         .contract-card-header { display: flex; justify-content: space-between; margin-bottom: 12px; font-weight: 700; }
@@ -623,7 +623,7 @@
                     <button id="filterBtn" onclick="openDrawer('drawer-filter')">
                         <svg width="22" height="22" class="icon-svg" viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
                     </button>
-                    <button>
+                    <button id="mainDownloadBtn" style="display: none;">
                         <svg width="22" height="22" class="icon-svg" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                     </button>
                 </div>
@@ -799,6 +799,13 @@
                     </td>
                 </tr>
             `}).join('');
+
+            checkDownloadBtnState();
+
+            // Add event listeners to individual checkboxes
+            document.querySelectorAll('.row-checkbox').forEach(cb => {
+                cb.addEventListener('change', checkDownloadBtnState);
+            });
         }
 
         function setTab(idx) {
@@ -875,10 +882,19 @@
         });
 
         // Checkboxes logic
+        function checkDownloadBtnState() {
+            const btn = document.getElementById('mainDownloadBtn');
+            if(btn) {
+                const anyChecked = document.querySelectorAll('.row-checkbox:checked').length > 0;
+                btn.style.display = anyChecked ? 'block' : 'none';
+            }
+        }
+
         function toggleAllCheckboxes(masterCheckbox) {
             document.querySelectorAll('.row-checkbox').forEach(cb => {
                 cb.checked = masterCheckbox.checked;
             });
+            checkDownloadBtnState();
         }
 
         // PDF Logic
