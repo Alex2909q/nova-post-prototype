@@ -300,7 +300,8 @@
         .pdf-document th, .pdf-document td { white-space: normal; word-break: break-word; }
         .pdf-doc-head { display: flex; justify-content: space-between; border-bottom: 2px solid var(--np-red); padding-bottom: 24px; margin-bottom: 32px; }
         .pdf-doc-title { font-size: 24px; font-weight: 700; margin-bottom: 8px;}
-        .link-text { color: var(--np-red); text-decoration: underline; cursor: pointer; font-weight: 500;}
+        .link-text { color: var(--text-main); text-decoration: none; cursor: pointer; font-weight: 500;}
+        .link-text:hover { color: var(--np-red); text-decoration: underline; }
 
         @media print {
             body > * { display: none !important; }
