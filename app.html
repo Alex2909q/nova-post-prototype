@@ -658,13 +658,13 @@
                 id: 'tab_1',
                 label: 'Взаєморозрахунки з Нова Пошта',
                 cards: [
-                    { amount: '- 4 500 ₴', label: 'Заборгованість', c: 'c-danger', hint: 'Загальна сума неоплачених рахунків з простроченим терміном оплати' },
-                    { amount: '12 890 ₴', label: 'Очікується оплата', c: 'c-warning', tooltip: [
+                    { amount: '- 4 500 ₴', amountUSD: '- 110 $', label: 'Заборгованість', c: 'c-danger', hint: 'Загальна сума неоплачених рахунків з простроченим терміном оплати' },
+                    { amount: '12 890 ₴', amountUSD: '322 $', label: 'Очікується оплата', c: 'c-warning', tooltip: [
                         { sum: '3 960 ₴', date: 'до 10.07.2025' },
                         { sum: '3 960 ₴', date: 'до 10.09.2025' },
                         { sum: '4 970 ₴', date: 'до 15.10.2025' }
                     ]},
-                    { amount: '34 680 ₴', label: 'Сплачено цього місяця', c: 'c-success', hint: 'Сума всіх оплат, здійснених з початку поточного місяця' }
+                    { amount: '34 680 ₴', amountUSD: '867 $', label: 'Сплачено цього місяця', c: 'c-success', hint: 'Сума всіх оплат, здійснених з початку поточного місяця' }
                 ],
                 cols: ['<input type="checkbox" class="custom-checkbox" onchange="toggleAllCheckboxes(this)">', 'Дата', 'Номер рахунку', 'Номер контракту', 'Кількість відправлень', 'Сума', 'Статус оплати', 'Спосіб оплати', 'Термін оплати', ''],
                 rows: [
@@ -683,13 +683,13 @@
                 id: 'tab_2',
                 label: 'Рух коштів',
                 cards: [
-                    { amount: '- 4 500 ₴', label: 'Заборгованість', c: 'c-danger', hint: 'Загальна сума неоплачених рахунків з простроченим терміном оплати' },
-                    { amount: '12 890 ₴', label: 'Очікується оплата', c: 'c-warning', tooltip: [
+                    { amount: '- 4 500 ₴', amountUSD: '- 110 $', label: 'Заборгованість', c: 'c-danger', hint: 'Загальна сума неоплачених рахунків з простроченим терміном оплати' },
+                    { amount: '12 890 ₴', amountUSD: '322 $', label: 'Очікується оплата', c: 'c-warning', tooltip: [
                         { sum: '3 960 ₴', date: 'до 10.07.2025' },
                         { sum: '3 960 ₴', date: 'до 10.09.2025' },
                         { sum: '4 970 ₴', date: 'до 15.10.2025' }
                     ]},
-                    { amount: '34 680 ₴', label: 'Сплачено цього місяця', c: 'c-success', hint: 'Сума всіх оплат, здійснених з початку поточного місяця' }
+                    { amount: '34 680 ₴', amountUSD: '867 $', label: 'Сплачено цього місяця', c: 'c-success', hint: 'Сума всіх оплат, здійснених з початку поточного місяця' }
                 ],
                 cols: ['Дата', 'Операція', 'Сума', 'Баланс', ''],
                 rows: [
@@ -748,10 +748,20 @@
                 if(c.hint) {
                     hintHtml = `<div class="card-hint"><svg class="card-hint-icon icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg><div class="card-hint-text">${c.hint}</div></div>`;
                 }
+                
+                let amountHtml = `<div class="card-amount ${c.c}">${c.amount}</div>`;
+                if(c.amountUSD) {
+                    amountHtml = `
+                    <div style="display:flex; align-items:baseline; gap:16px;">
+                        <div class="card-amount ${c.c}">${c.amount}</div>
+                        <div style="font-size:20px; font-weight:600; color:#9CA3AF">${c.amountUSD}</div>
+                    </div>`;
+                }
+                
                 return `
                 <div class="balance-card">
                     <div class="card-label">${c.label}${hintHtml}</div>
-                    <div class="card-amount ${c.c}">${c.amount}</div>
+                    ${amountHtml}
                     ${tooltipHtml}
                 </div>`;
             }).join('');
