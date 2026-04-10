@@ -752,9 +752,10 @@
                 let amountHtml = `<div class="card-amount ${c.c}">${c.amount}</div>`;
                 if(c.amountUSD) {
                     amountHtml = `
-                    <div style="display:flex; align-items:baseline; gap:16px;">
+                    <div style="display:flex; align-items:baseline; gap:20px;">
                         <div class="card-amount ${c.c}">${c.amount}</div>
-                        <div style="font-size:20px; font-weight:600; color:#9CA3AF">${c.amountUSD}</div>
+                        <div style="width:1px; height:24px; background:var(--border-color);"></div>
+                        <div class="card-amount ${c.c}">${c.amountUSD}</div>
                     </div>`;
                 }
                 
