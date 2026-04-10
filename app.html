@@ -656,18 +656,18 @@
                 label: 'Взаєморозрахунки з Нова Пошта',
                 cards: [
                     { amount: '- 4 500 ₴', label: 'Заборгованість', c: 'c-danger', hint: 'Загальна сума неоплачених рахунків з простроченим терміном оплати' },
-                    { amount: '34 680 ₴', label: 'Сплачено цього місяця', c: 'c-success', hint: 'Сума всіх оплат, здійснених з початку поточного місяця' },
                     { amount: '12 890 ₴', label: 'Очікується оплата', c: 'c-warning', tooltip: [
                         { sum: '3 960 ₴', date: 'до 10.07.2025' },
                         { sum: '3 960 ₴', date: 'до 10.09.2025' },
                         { sum: '4 970 ₴', date: 'до 15.10.2025' }
-                    ]}
+                    ]},
+                    { amount: '34 680 ₴', label: 'Сплачено цього місяця', c: 'c-success', hint: 'Сума всіх оплат, здійснених з початку поточного місяця' }
                 ],
-                cols: ['<input type="checkbox" class="custom-checkbox" onchange="toggleAllCheckboxes(this)">', 'Дата', 'Номер рахунку', 'Кількість відправлень', 'Сума', 'Статус оплати', 'Спосіб оплати', 'Термін оплати', ''],
+                cols: ['<input type="checkbox" class="custom-checkbox" onchange="toggleAllCheckboxes(this)">', 'Дата', 'Номер рахунку', 'Номер контракту', 'Кількість відправлень', 'Сума', 'Статус оплати', 'Спосіб оплати', 'Термін оплати', ''],
                 rows: [
-                    { d: ['<input type="checkbox" class="custom-checkbox row-checkbox">', '20.03.2025', '<span class="link-text">123456</span>', '957', '3 960 ₴', '<span class="badge bg-warning">Потребує оплати</span>', 'Безготівковий', '10.07.2025'], id: '123456' },
-                    { d: ['<input type="checkbox" class="custom-checkbox row-checkbox">', '20.02.2025', '<span class="link-text">123457</span>', '1300', '8 450 ₴', '<span class="badge bg-success">Сплачено</span>', 'Безготівковий', '10.08.2025'], id: '123457' },
-                    { d: ['<input type="checkbox" class="custom-checkbox row-checkbox">', '20.03.2025', '<span class="link-text">123458</span>', '957', '3 960 ₴', '<span class="badge bg-warning">Потребує оплати</span>', 'Безготівковий', '10.09.2025'], id: '123458' }
+                    { d: ['<input type="checkbox" class="custom-checkbox row-checkbox">', '20.03.2025', '<span class="link-text">123456</span>', '<span class="link-text">0987654321</span>', '957', '3 960 ₴', '<span class="badge bg-warning">Потребує оплати</span>', 'Безготівковий', '10.07.2025'], id: '123456' },
+                    { d: ['<input type="checkbox" class="custom-checkbox row-checkbox">', '20.02.2025', '<span class="link-text">123457</span>', '<span class="link-text">1234567890</span>', '1300', '8 450 ₴', '<span class="badge bg-success">Сплачено</span>', 'Безготівковий', '10.08.2025'], id: '123457' },
+                    { d: ['<input type="checkbox" class="custom-checkbox row-checkbox">', '20.03.2025', '<span class="link-text">123458</span>', '<span class="link-text">0987654321</span>', '957', '3 960 ₴', '<span class="badge bg-warning">Потребує оплати</span>', 'Безготівковий', '10.09.2025'], id: '123458' }
                 ],
                 menu: [
                     { l: 'Завантажити рахунок >', a: null },
@@ -681,12 +681,12 @@
                 label: 'Рух коштів',
                 cards: [
                     { amount: '- 4 500 ₴', label: 'Заборгованість', c: 'c-danger', hint: 'Загальна сума неоплачених рахунків з простроченим терміном оплати' },
-                    { amount: '34 680 ₴', label: 'Сплачено цього місяця', c: 'c-success', hint: 'Сума всіх оплат, здійснених з початку поточного місяця' },
                     { amount: '12 890 ₴', label: 'Очікується оплата', c: 'c-warning', tooltip: [
                         { sum: '3 960 ₴', date: 'до 10.07.2025' },
                         { sum: '3 960 ₴', date: 'до 10.09.2025' },
                         { sum: '4 970 ₴', date: 'до 15.10.2025' }
-                    ]}
+                    ]},
+                    { amount: '34 680 ₴', label: 'Сплачено цього місяця', c: 'c-success', hint: 'Сума всіх оплат, здійснених з початку поточного місяця' }
                 ],
                 cols: ['Дата', 'Операція', 'Сума', 'Баланс', ''],
                 rows: [
@@ -697,29 +697,7 @@
                     { l: 'Завантажити Excel, CSV', a: null }
                 ]
             },
-            {
-                id: 'tab_3',
-                label: 'Перерахунки за послуги',
-                cards: [         
-                    { amount: '- 4 500 ₴', label: 'Заборгованість', c: 'c-danger', hint: 'Загальна сума неоплачених рахунків з простроченим терміном оплати' },
-                    { amount: '34 680 ₴', label: 'Сплачено цього місяця', c: 'c-success', hint: 'Сума всіх оплат, здійснених з початку поточного місяця' },
-                    { amount: '12 890 ₴', label: 'Очікується оплата', c: 'c-warning', tooltip: [
-                        { sum: '3 960 ₴', date: 'до 10.07.2025' },
-                        { sum: '3 960 ₴', date: 'до 10.09.2025' },
-                        { sum: '4 970 ₴', date: 'до 15.10.2025' }
-                    ]}
-                ],
-                cols: ['Дата', 'Номер відправлення', 'Назва послуги', 'Опис', 'Тариф (PLN)', 'Коригування', 'Коментар', ''],
-                rows: [
-                    { d: ['22.03.2025', '20450000000001', 'Доставка', 'Відхилення ваги', '14.50', '<span class="t-neg">- 2.50</span>', 'Фактична 15кг'] },
-                    { d: ['21.03.2025', '20450000000002', 'Митниця', 'Мито', '0.00', '<span class="t-pos">+ 5.00</span>', 'Перерахунок'] }
-                ],
-                menu: [
-                    { l: 'Переглянути деталі', a: null },
-                    { l: 'Завантажити акт рахунок', a: null },
-                    { l: 'Оскаржити', a: null }
-                ]
-            },
+
             {
                 id: 'tab_4',
                 label: 'Мої контракти',
@@ -730,7 +708,7 @@
                 ],
                 cols: ['Контракт', 'Організація', 'Країна', 'Статус', 'Дата підписання', 'Валюта', 'Умови оплати', ''],
                 rows: [
-                    { d: ['1234567890', 'Polska Logistyka Sp.', 'PL', '<span class="badge bg-active">Активний</span>', '12.01.2023', 'PLN', 'Післяплата'] },
+                    { d: ['1234567890', 'Polska Logistyka Sp.', 'PL', '<span class="badge bg-active">Активний</span>', '12.01.2023', 'PLN', 'Постоплата'] },
                     { d: ['0987654321', 'ТОВ Нова Пошта', 'UA', '<span class="badge bg-warning">Призупинено</span>', '10.05.2021', 'UAH', 'Передоплата'] }
                 ],
                 menu: [
@@ -891,7 +869,7 @@
             const checkedCount = document.querySelectorAll('.row-checkbox:checked').length;
             
             if(dlBtn) dlBtn.style.display = checkedCount > 0 ? 'block' : 'none';
-            if(payBtn) payBtn.style.display = checkedCount === 1 ? 'block' : 'none';
+            if(payBtn) payBtn.style.display = checkedCount >= 1 ? 'block' : 'none';
         }
 
         function toggleAllCheckboxes(masterCheckbox) {
