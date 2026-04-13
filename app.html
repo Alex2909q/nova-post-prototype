@@ -743,6 +743,50 @@
 
         let activeTabIdx = 0;
         let openMenuId = null;
+        let currentSortColIndex = null;
+        let sortAscending = true;
+
+        function stripHtml(html) {
+            const tmp = document.createElement('DIV');
+            tmp.innerHTML = html;
+            return tmp.textContent || tmp.innerText || '';
+        }
+
+        function parseForSort(value) {
+            const text = stripHtml(String(value)).trim();
+            const dateMatch = text.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+            if (dateMatch) {
+                return new Date(`${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`).getTime();
+            }
+            const numVal = text.replace(/[\s₴$+]/g, '').replace(',', '.');
+            if (!isNaN(numVal) && numVal !== '' && text !== '') {
+                // Return '-' + numVal if original starts with '-', since replace doesn't remove '-'
+                // Actually parseFloat('-8500') handles it perfectly.
+                return parseFloat(numVal);
+            }
+            return text.toLowerCase();
+        }
+
+        function sortTable(colIndex) {
+            if (currentSortColIndex === colIndex) {
+                sortAscending = !sortAscending;
+            } else {
+                currentSortColIndex = colIndex;
+                sortAscending = true;
+            }
+            
+            const td = APP_DATA[activeTabIdx];
+            td.rows.sort((a, b) => {
+                const valA = parseForSort(a.d[colIndex]);
+                const valB = parseForSort(b.d[colIndex]);
+                
+                if (valA < valB) return sortAscending ? -1 : 1;
+                if (valA > valB) return sortAscending ? 1 : -1;
+                return 0;
+            });
+            
+            renderApp();
+        }
 
         // Render functions
         function renderApp() {
@@ -790,7 +834,25 @@
 
             // Render Table Header
             const th = document.getElementById('table-head');
-            th.innerHTML = `<tr>${td.cols.map(c => `<th>${c}</th>`).join('')}</tr>`;
+            th.innerHTML = `<tr>${td.cols.map((c, cIdx) => {
+                if (c.includes('checkbox') || c === '') {
+                    return `<th>${c}</th>`;
+                }
+
+                let sortIcon = '<svg class="icon-svg" width="14" height="14" viewBox="0 0 24 24" style="margin-left:4px; opacity: 0.3; vertical-align: middle;"><path d="M7 15l5 5 5-5M7 9l5-5 5 5"></path></svg>';
+                let activeStyle = '';
+                
+                if (currentSortColIndex === cIdx) {
+                    sortIcon = sortAscending 
+                        ? '<svg class="icon-svg" width="14" height="14" viewBox="0 0 24 24" style="margin-left:4px; vertical-align: middle;"><path d="M7 15l5 5 5-5"></path></svg>'
+                        : '<svg class="icon-svg" width="14" height="14" viewBox="0 0 24 24" style="margin-left:4px; vertical-align: middle;"><path d="M7 9l5-5 5 5"></path></svg>';
+                    activeStyle = 'color: var(--text-main); font-weight: 600;';
+                }
+                
+                return `<th onclick="sortTable(${cIdx})" style="cursor: pointer; user-select: none; white-space: nowrap; transition: 0.2s; ${activeStyle}" onmouseover="this.style.color='var(--text-main)'" onmouseout="if(currentSortColIndex !== ${cIdx}) this.style.color=''">
+                    <div style="display:inline-flex; align-items:center;">${c} ${sortIcon}</div>
+                </th>`;
+            }).join('')}</tr>`;
 
             // Render Table Body
             const tb = document.getElementById('table-body');
@@ -826,6 +888,7 @@
 
         function setTab(idx) {
             activeTabIdx = idx;
+            currentSortColIndex = null;
             renderApp();
         }
 
