@@ -206,11 +206,13 @@
         .tabs-tools { display: flex; gap: 24px; color: var(--text-secondary); flex-shrink: 0; padding-right: 16px; }
 
         /* TABLE */
-        .table-wrap { background: white; border-radius: 12px; border: 1px solid var(--border-color); width: 100%; }
+        .table-wrap { background: white; border-radius: 12px; border: 1px solid var(--border-color); width: 100%; overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; min-width: 800px; }
+        tr { background-color: white; }
         th { text-align: left; padding: 16px 20px; font-size: 12px; font-weight: 500; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); white-space: nowrap; }
         td { padding: 16px 20px; font-size: 14px; color: var(--text-main); border-bottom: 1px solid var(--border-color); white-space: nowrap; }
         tr:last-child td { border-bottom: none; }
+        th:last-child, td:last-child { position: sticky; right: 0; background-color: inherit; z-index: 5; box-shadow: -4px 0 10px rgba(0,0,0,0.02); }
         
         .badge { display: inline-flex; align-items: center; justify-content: center; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; }
         .bg-warning { background-color: var(--warning-bg); color: #B45309; }
