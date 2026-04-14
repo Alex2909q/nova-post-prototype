@@ -228,8 +228,8 @@
         .kebab-btn { color: var(--text-secondary); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
         .kebab-btn:hover { background: var(--bg-body); }
         .kebab-menu {
-            position: absolute; right: 0; top: 100%; background: white; border: 1px solid var(--border-color);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-radius: 8px; width: 220px; display: none; z-index: 50; padding: 8px 0;
+            position: fixed; background: white; border: 1px solid var(--border-color);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-radius: 8px; width: 220px; display: none; z-index: 9999; padding: 8px 0;
         }
         .kebab-menu.show { display: block; }
         .kebab-item { padding: 10px 16px; font-size: 13px; text-align: left; width: 100%; display: block; color: var(--text-main); }
@@ -915,7 +915,15 @@
             // close existing
             document.querySelectorAll('.kebab-menu').forEach(m => m.classList.remove('show'));
             if(openMenuId !== idx) {
-                document.getElementById(`menu-${idx}`).classList.add('show');
+                const menu = document.getElementById(`menu-${idx}`);
+                const btn = e.currentTarget;
+                const rect = btn.getBoundingClientRect();
+                
+                menu.style.top = (rect.bottom + 4) + 'px';
+                // 220px is menu width. Align to right of button
+                menu.style.left = (rect.right - 220) + 'px';
+                
+                menu.classList.add('show');
                 openMenuId = idx;
             } else {
                 openMenuId = null;
@@ -961,6 +969,13 @@
             document.querySelectorAll('.kebab-menu').forEach(m => m.classList.remove('show'));
             openMenuId = null;
         });
+        
+        window.addEventListener('scroll', () => {
+            document.getElementById('orgMenu').classList.remove('open');
+            document.getElementById('notifMenu').classList.remove('open');
+            document.querySelectorAll('.kebab-menu').forEach(m => m.classList.remove('show'));
+            openMenuId = null;
+        }, true);
 
         // Checkboxes logic
         function checkDownloadBtnState() {
