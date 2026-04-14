@@ -213,6 +213,7 @@
         td { padding: 16px 20px; font-size: 14px; color: var(--text-main); border-bottom: 1px solid var(--border-color); white-space: nowrap; }
         tr:last-child td { border-bottom: none; }
         th:last-child, td:last-child { position: sticky; right: 0; background-color: inherit; z-index: 5; box-shadow: -4px 0 10px rgba(0,0,0,0.02); }
+        .active-kebab { z-index: 100 !important; }
         
         .badge { display: inline-flex; align-items: center; justify-content: center; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; }
         .bg-warning { background-color: var(--warning-bg); color: #B45309; }
@@ -914,10 +915,15 @@
             e.stopPropagation();
             // close existing
             document.querySelectorAll('.kebab-menu').forEach(m => m.classList.remove('show'));
+            document.querySelectorAll('td').forEach(td => td.classList.remove('active-kebab'));
+            
             if(openMenuId !== idx) {
                 const menu = document.getElementById(`menu-${idx}`);
                 const btn = e.currentTarget;
                 const rect = btn.getBoundingClientRect();
+                const parentTd = btn.closest('td');
+                
+                if (parentTd) parentTd.classList.add('active-kebab');
                 
                 menu.style.top = (rect.bottom + 4) + 'px';
                 // 220px is menu width. Align to right of button
@@ -951,6 +957,7 @@
             document.querySelectorAll('.drawer').forEach(d => d.classList.remove('open'));
             openMenuId = null;
             document.querySelectorAll('.kebab-menu').forEach(m => m.classList.remove('show'));
+            document.querySelectorAll('td').forEach(td => td.classList.remove('active-kebab'));
         }
 
         // Notifications Logic
@@ -967,6 +974,7 @@
             document.getElementById('orgMenu').classList.remove('open');
             document.getElementById('notifMenu').classList.remove('open');
             document.querySelectorAll('.kebab-menu').forEach(m => m.classList.remove('show'));
+            document.querySelectorAll('td').forEach(td => td.classList.remove('active-kebab'));
             openMenuId = null;
         });
         
@@ -974,6 +982,7 @@
             document.getElementById('orgMenu').classList.remove('open');
             document.getElementById('notifMenu').classList.remove('open');
             document.querySelectorAll('.kebab-menu').forEach(m => m.classList.remove('show'));
+            document.querySelectorAll('td').forEach(td => td.classList.remove('active-kebab'));
             openMenuId = null;
         }, true);
 
