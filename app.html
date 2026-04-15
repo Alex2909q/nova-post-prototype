@@ -413,10 +413,32 @@
         <div class="drawer-body">
             <div class="detail-row" style="flex-direction:column; border:none; padding: 0 0 24px 0;">
                 <div class="detail-label" style="font-weight:600; color:var(--text-main); margin-bottom:8px;">Статус оплати</div>
-                <label style="display:flex; gap:8px; margin-bottom:8px; align-items:center;"><input type="checkbox"> Потребує оплати</label>
-                <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox"> Сплачено</label>
+                <label style="display:flex; gap:8px; margin-bottom:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> Потребує оплати</label>
+                <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> Сплачено</label>
             </div>
-            <!-- More filters mock -->
+
+            <div class="detail-row" style="flex-direction:column; border:none; padding: 0 0 24px 0; border-top: 1px solid var(--border-color); padding-top: 24px;">
+                <div class="detail-label" style="font-weight:600; color:var(--text-main); margin-bottom:8px;">Тип контракту</div>
+                <label style="display:flex; gap:8px; margin-bottom:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> Логістичний</label>
+                <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> Фінансовий</label>
+            </div>
+
+            <div class="detail-row" style="flex-direction:column; border:none; padding: 0 0 24px 0; border-top: 1px solid var(--border-color); padding-top: 24px;">
+                <div class="detail-label" style="font-weight:600; color:var(--text-main); margin-bottom:8px;">Статус договору</div>
+                <label style="display:flex; gap:8px; margin-bottom:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> Активний</label>
+                <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> Призупинений</label>
+            </div>
+
+            <div class="detail-row" style="flex-direction:column; border:none; padding: 0 0 24px 0; border-top: 1px solid var(--border-color); padding-top: 24px;">
+                <div class="detail-label" style="font-weight:600; color:var(--text-main); margin-bottom:8px;">Валюта договору</div>
+                <label style="display:flex; gap:8px; margin-bottom:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> UAH</label>
+                <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> PLN</label>
+            </div>
+
+            <div class="detail-row" style="flex-direction:column; border:none; padding: 0 0 24px 0; border-top: 1px solid var(--border-color); padding-top: 24px;">
+                <div class="detail-label" style="font-weight:600; color:var(--text-main); margin-bottom:8px;">Сума заборгованості</div>
+                <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> Показати лише договори із заборгованістю</label>
+            </div>
         </div>
         <div class="drawer-footer">
             <button class="secondary-btn" onclick="closeAllDrawers()">Очистити</button>
