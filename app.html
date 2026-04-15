@@ -410,39 +410,39 @@
                 <svg width="20" height="20" class="icon-svg" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"></path></svg>
             </button>
         </div>
-        <div class="drawer-body">
-            <div class="detail-row" style="flex-direction:column; border:none; padding: 0 0 24px 0;">
-                <div class="detail-label" style="font-weight:600; color:var(--text-main); margin-bottom:8px;">Статус оплати</div>
-                <label style="display:flex; gap:8px; margin-bottom:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> Потребує оплати</label>
-                <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> Сплачено</label>
+        <div class="drawer-body" style="font-size:10px;">
+            <div style="padding: 0 0 14px 0;">
+                <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Статус оплати</div>
+                <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="status" data-value="Потребує оплати"> Потребує оплати</label>
+                <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="status" data-value="Сплачено"> Сплачено</label>
             </div>
 
-            <div class="detail-row" style="flex-direction:column; border:none; padding: 0 0 24px 0; border-top: 1px solid var(--border-color); padding-top: 24px;">
-                <div class="detail-label" style="font-weight:600; color:var(--text-main); margin-bottom:8px;">Тип контракту</div>
-                <label style="display:flex; gap:8px; margin-bottom:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> Логістичний</label>
-                <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> Фінансовий</label>
+            <div style="padding: 14px 0; border-top: 1px solid var(--border-color);">
+                <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Тип контракту</div>
+                <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="type" data-value="Логістичний"> Логістичний</label>
+                <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="type" data-value="Фінансовий"> Фінансовий</label>
             </div>
 
-            <div class="detail-row" style="flex-direction:column; border:none; padding: 0 0 24px 0; border-top: 1px solid var(--border-color); padding-top: 24px;">
-                <div class="detail-label" style="font-weight:600; color:var(--text-main); margin-bottom:8px;">Статус договору</div>
-                <label style="display:flex; gap:8px; margin-bottom:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> Активний</label>
-                <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> Призупинений</label>
+            <div style="padding: 14px 0; border-top: 1px solid var(--border-color);">
+                <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Статус договору</div>
+                <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="contract-status" data-value="Активний"> Активний</label>
+                <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="contract-status" data-value="Призупинений"> Призупинений</label>
             </div>
 
-            <div class="detail-row" style="flex-direction:column; border:none; padding: 0 0 24px 0; border-top: 1px solid var(--border-color); padding-top: 24px;">
-                <div class="detail-label" style="font-weight:600; color:var(--text-main); margin-bottom:8px;">Валюта договору</div>
-                <label style="display:flex; gap:8px; margin-bottom:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> UAH</label>
-                <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> PLN</label>
+            <div style="padding: 14px 0; border-top: 1px solid var(--border-color);">
+                <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Валюта договору</div>
+                <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="currency" data-value="UAH"> UAH</label>
+                <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="currency" data-value="PLN"> PLN</label>
             </div>
 
-            <div class="detail-row" style="flex-direction:column; border:none; padding: 0 0 24px 0; border-top: 1px solid var(--border-color); padding-top: 24px;">
-                <div class="detail-label" style="font-weight:600; color:var(--text-main); margin-bottom:8px;">Сума заборгованості</div>
-                <label style="display:flex; gap:8px; align-items:center;"><input type="checkbox" class="custom-checkbox"> Показати лише договори із заборгованістю</label>
+            <div style="padding: 14px 0; border-top: 1px solid var(--border-color);">
+                <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Сума заборгованості</div>
+                <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="debt" data-value="debt"> Показати лише договори із заборгованістю</label>
             </div>
         </div>
         <div class="drawer-footer">
-            <button class="secondary-btn" onclick="closeAllDrawers()">Очистити</button>
-            <button class="success-btn" style="flex: 2" onclick="closeAllDrawers()">Застосувати</button>
+            <button class="secondary-btn" onclick="clearFilters()">Очистити</button>
+            <button class="success-btn" style="flex: 2" onclick="applyFilters()">Застосувати</button>
         </div>
     </div>
 
@@ -770,6 +770,78 @@
         let openMenuId = null;
         let currentSortColIndex = null;
         let sortAscending = true;
+
+        // Store original rows for filtering
+        const originalRows = APP_DATA.map(tab => tab.rows.slice());
+
+        function getCheckedValues(filterName) {
+            return [...document.querySelectorAll(`#drawer-filter input[data-filter="${filterName}"]:checked`)].map(cb => cb.dataset.value);
+        }
+
+        function applyFilters() {
+            const statusVals = getCheckedValues('status');
+            const typeVals = getCheckedValues('type');
+            const contractStatusVals = getCheckedValues('contract-status');
+            const currencyVals = getCheckedValues('currency');
+            const debtChecked = document.querySelector('#drawer-filter input[data-filter="debt"]')?.checked;
+
+            APP_DATA.forEach((tab, idx) => {
+                let filtered = originalRows[idx].slice();
+
+                if (tab.id === 'tab_1' && statusVals.length > 0) {
+                    // col index 6 = Статус оплати
+                    filtered = filtered.filter(r => {
+                        const cellText = stripHtml(r.d[6]);
+                        return statusVals.some(v => cellText.includes(v));
+                    });
+                }
+
+                if (tab.id === 'tab_4') {
+                    if (typeVals.length > 0) {
+                        // last data col = Тип контракту (index 8)
+                        filtered = filtered.filter(r => {
+                            const cellText = stripHtml(r.d[8]);
+                            return typeVals.some(v => cellText.includes(v));
+                        });
+                    }
+                    if (contractStatusVals.length > 0) {
+                        // col index 3 = Статус
+                        filtered = filtered.filter(r => {
+                            const cellText = stripHtml(r.d[3]);
+                            return contractStatusVals.some(v => cellText.includes(v));
+                        });
+                    }
+                    if (currencyVals.length > 0) {
+                        // col index 5 = Валюта
+                        filtered = filtered.filter(r => {
+                            const cellText = stripHtml(r.d[5]);
+                            return currencyVals.some(v => cellText === v);
+                        });
+                    }
+                    if (debtChecked) {
+                        // col index 6 = Сума до сплати - show only with amount > 0
+                        filtered = filtered.filter(r => {
+                            const numVal = parseFloat(stripHtml(r.d[6]).replace(/[^\d.-]/g, ''));
+                            return numVal > 0;
+                        });
+                    }
+                }
+
+                tab.rows = filtered;
+            });
+
+            closeAllDrawers();
+            renderApp();
+        }
+
+        function clearFilters() {
+            document.querySelectorAll('#drawer-filter input[type="checkbox"]').forEach(cb => cb.checked = false);
+            APP_DATA.forEach((tab, idx) => {
+                tab.rows = originalRows[idx].slice();
+            });
+            closeAllDrawers();
+            renderApp();
+        }
 
         function stripHtml(html) {
             const tmp = document.createElement('DIV');
