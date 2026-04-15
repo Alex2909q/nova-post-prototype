@@ -428,16 +428,12 @@
         </div>
         <div class="drawer-body" style="font-size:10px;">
             <div class="filter-section" data-tabs="tab_1,tab_2,tab_4" style="padding: 0 0 14px 0;">
-                <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Період</div>
-                <div style="display:flex; gap:8px; align-items:center;">
-                    <div style="flex:1;">
-                        <label style="display:block; margin-bottom:2px; color:var(--text-secondary);">З</label>
-                        <input type="date" id="filter-date-from" style="width:100%; padding:5px 8px; border:1px solid var(--border-color); border-radius:6px; font-size:10px;">
-                    </div>
-                    <div style="flex:1;">
-                        <label style="display:block; margin-bottom:2px; color:var(--text-secondary);">По</label>
-                        <input type="date" id="filter-date-to" style="width:100%; padding:5px 8px; border:1px solid var(--border-color); border-radius:6px; font-size:10px;">
-                    </div>
+                <div style="font-weight:600; color:var(--text-main); margin-bottom:8px; font-size:11px;">Період</div>
+                <div style="display:flex; gap:6px; align-items:center;">
+                    <span style="color:var(--text-secondary);">з</span>
+                    <input type="date" id="filter-date-from" style="flex:1; padding:4px 6px; border:1px solid var(--border-color); border-radius:6px; font-size:10px; min-width:0;">
+                    <span style="color:var(--text-secondary);">по</span>
+                    <input type="date" id="filter-date-to" style="flex:1; padding:4px 6px; border:1px solid var(--border-color); border-radius:6px; font-size:10px; min-width:0;">
                 </div>
             </div>
 
