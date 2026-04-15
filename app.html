@@ -427,31 +427,31 @@
             </button>
         </div>
         <div class="drawer-body" style="font-size:10px;">
-            <div style="padding: 0 0 14px 0;">
+            <div class="filter-section" data-tabs="tab_1" style="padding: 0 0 14px 0;">
                 <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Статус оплати</div>
                 <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="status" data-value="Потребує оплати"> Потребує оплати</label>
                 <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="status" data-value="Сплачено"> Сплачено</label>
             </div>
 
-            <div style="padding: 14px 0; border-top: 1px solid var(--border-color);">
+            <div class="filter-section" data-tabs="tab_4" style="padding: 14px 0; border-top: 1px solid var(--border-color);">
                 <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Тип контракту</div>
                 <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="type" data-value="Логістичний"> Логістичний</label>
                 <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="type" data-value="Фінансовий"> Фінансовий</label>
             </div>
 
-            <div style="padding: 14px 0; border-top: 1px solid var(--border-color);">
+            <div class="filter-section" data-tabs="tab_4" style="padding: 14px 0; border-top: 1px solid var(--border-color);">
                 <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Статус договору</div>
                 <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="contract-status" data-value="Активний"> Активний</label>
                 <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="contract-status" data-value="Призупинений"> Призупинений</label>
             </div>
 
-            <div style="padding: 14px 0; border-top: 1px solid var(--border-color);">
+            <div class="filter-section" data-tabs="tab_4" style="padding: 14px 0; border-top: 1px solid var(--border-color);">
                 <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Валюта договору</div>
                 <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="currency" data-value="UAH"> UAH</label>
                 <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="currency" data-value="PLN"> PLN</label>
             </div>
 
-            <div style="padding: 14px 0; border-top: 1px solid var(--border-color);">
+            <div class="filter-section" data-tabs="tab_4" style="padding: 14px 0; border-top: 1px solid var(--border-color);">
                 <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Сума заборгованості</div>
                 <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="debt" data-value="debt"> Показати лише договори із заборгованістю</label>
             </div>
@@ -1059,6 +1059,16 @@
         function openDrawer(id) {
             document.getElementById('backdrop').classList.add('show');
             document.getElementById(id).classList.add('open');
+
+            // Show/hide filter sections based on active tab
+            if (id === 'drawer-filter') {
+                const currentTabId = APP_DATA[activeTabIdx].id;
+                document.querySelectorAll('.filter-section').forEach(section => {
+                    const tabs = section.dataset.tabs.split(',');
+                    const visible = tabs.includes(currentTabId);
+                    section.style.display = visible ? '' : 'none';
+                });
+            }
         }
 
         function closeAllDrawers() {
