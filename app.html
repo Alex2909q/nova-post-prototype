@@ -206,7 +206,7 @@
         .tabs-tools { display: flex; gap: 24px; color: var(--text-secondary); flex-shrink: 0; padding-right: 16px; }
 
         /* TABLE */
-        .table-wrap { background: white; border-radius: 12px; border: 1px solid var(--border-color); width: 100%; overflow-x: auto; }
+        .table-wrap { background: white; border-radius: 12px; border: 1px solid var(--border-color); width: 100%; overflow-x: auto; overflow-y: visible; }
         table { width: 100%; border-collapse: collapse; min-width: 800px; }
         tr { background-color: white; }
         th { text-align: left; padding: 16px 20px; font-size: 12px; font-weight: 500; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); white-space: nowrap; }
@@ -735,8 +735,8 @@
                 ],
                 cols: ['Контракт', 'Організація', 'Країна', 'Статус', 'Дата підписання', 'Валюта', 'Умови оплати', 'Тип контракту', ''],
                 rows: [
-                    { d: ['1234567890', 'Polska Logistyka Sp.', 'PL', '<span class="badge bg-active">Активний</span>', '12.01.2023', 'PLN', '<span style="display:inline-flex;align-items:center;gap:6px;">Постоплата<span class="info-wrap" style="margin-left:0;"><svg class="icon-svg" style="width:16px;height:16px;color:#9CA3AF;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg><span class="info-tooltip" style="bottom:calc(100% + 8px);top:auto;left:auto;right:0;width:240px;">Оплата здійснюється після надання послуг у визначений договором термін</span></span></span>', 'Логістичний'] },
-                    { d: ['0987654321', 'ТОВ Нова Пошта', 'UA', '<span class="badge bg-warning">Призупинено</span>', '10.05.2021', 'UAH', '<span style="display:inline-flex;align-items:center;gap:6px;">Передоплата<span class="info-wrap" style="margin-left:0;"><svg class="icon-svg" style="width:16px;height:16px;color:#9CA3AF;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg><span class="info-tooltip" style="bottom:calc(100% + 8px);top:auto;left:auto;right:0;width:240px;">Оплата здійснюється до початку надання послуг авансовим платежем</span></span></span>', 'Комерційний'] }
+                    { d: ['1234567890', 'Polska Logistyka Sp.', 'PL', '<span class="badge bg-active">Активний</span>', '12.01.2023', 'PLN', '<span style="display:inline-flex;align-items:center;gap:6px;">Постоплата<span class="info-wrap" style="margin-left:0;"><svg class="icon-svg" style="width:16px;height:16px;color:#9CA3AF;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg><span class="info-tooltip" style="bottom:calc(100% + 8px);top:auto;left:auto;right:0;width:200px;font-size:11px;padding:6px 10px;">Оплата здійснюється після надання послуг у визначений договором термін</span></span></span>', 'Логістичний'] },
+                    { d: ['0987654321', 'ТОВ Нова Пошта', 'UA', '<span class="badge bg-warning">Призупинено</span>', '10.05.2021', 'UAH', '<span style="display:inline-flex;align-items:center;gap:6px;">Передоплата<span class="info-wrap" style="margin-left:0;"><svg class="icon-svg" style="width:16px;height:16px;color:#9CA3AF;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg><span class="info-tooltip" style="bottom:calc(100% + 8px);top:auto;left:auto;right:0;width:200px;font-size:11px;padding:6px 10px;">Оплата здійснюється до початку надання послуг авансовим платежем</span></span></span>', 'Комерційний'] }
                 ],
                 menu: [
                     { l: 'Редагувати', a: null }
