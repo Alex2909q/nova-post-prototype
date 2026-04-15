@@ -427,7 +427,21 @@
             </button>
         </div>
         <div class="drawer-body" style="font-size:10px;">
-            <div class="filter-section" data-tabs="tab_1" style="padding: 0 0 14px 0;">
+            <div class="filter-section" data-tabs="tab_1,tab_2,tab_4" style="padding: 0 0 14px 0;">
+                <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Період</div>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <div style="flex:1;">
+                        <label style="display:block; margin-bottom:2px; color:var(--text-secondary);">З</label>
+                        <input type="date" id="filter-date-from" style="width:100%; padding:5px 8px; border:1px solid var(--border-color); border-radius:6px; font-size:10px;">
+                    </div>
+                    <div style="flex:1;">
+                        <label style="display:block; margin-bottom:2px; color:var(--text-secondary);">По</label>
+                        <input type="date" id="filter-date-to" style="width:100%; padding:5px 8px; border:1px solid var(--border-color); border-radius:6px; font-size:10px;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section" data-tabs="tab_1" style="padding: 14px 0; border-top: 1px solid var(--border-color);">
                 <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Статус оплати</div>
                 <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="status" data-value="Потребує оплати"> Потребує оплати</label>
                 <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="status" data-value="Сплачено"> Сплачено</label>
@@ -795,14 +809,40 @@
         }
 
         function applyFilters() {
+            const dateFrom = document.getElementById('filter-date-from').value;
+            const dateTo = document.getElementById('filter-date-to').value;
             const statusVals = getCheckedValues('status');
             const typeVals = getCheckedValues('type');
             const contractStatusVals = getCheckedValues('contract-status');
             const currencyVals = getCheckedValues('currency');
             const debtChecked = document.querySelector('#drawer-filter input[data-filter="debt"]')?.checked;
 
+            // Helper: parse DD.MM.YYYY to Date
+            function parseDMY(str) {
+                const parts = str.split('.');
+                if (parts.length !== 3) return null;
+                return new Date(parts[2], parts[1] - 1, parts[0]);
+            }
+
+            // Date column index per tab
+            const dateColMap = { tab_1: 1, tab_2: 0, tab_4: 4 };
+
             APP_DATA.forEach((tab, idx) => {
                 let filtered = originalRows[idx].slice();
+
+                // Date filter (applies to all tabs)
+                const dateColIdx = dateColMap[tab.id];
+                if ((dateFrom || dateTo) && dateColIdx !== undefined) {
+                    const from = dateFrom ? new Date(dateFrom) : null;
+                    const to = dateTo ? new Date(dateTo) : null;
+                    filtered = filtered.filter(r => {
+                        const cellDate = parseDMY(stripHtml(r.d[dateColIdx]));
+                        if (!cellDate) return true;
+                        if (from && cellDate < from) return false;
+                        if (to && cellDate > to) return false;
+                        return true;
+                    });
+                }
 
                 if (tab.id === 'tab_1' && statusVals.length > 0) {
                     // col index 6 = Статус оплати
@@ -852,6 +892,8 @@
 
         function clearFilters() {
             document.querySelectorAll('#drawer-filter input[type="checkbox"]').forEach(cb => cb.checked = false);
+            document.getElementById('filter-date-from').value = '';
+            document.getElementById('filter-date-to').value = '';
             APP_DATA.forEach((tab, idx) => {
                 tab.rows = originalRows[idx].slice();
             });
