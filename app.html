@@ -437,6 +437,16 @@
                 </div>
             </div>
 
+            <div class="filter-section" data-tabs="tab_1,tab_2,tab_4" style="padding: 14px 0; border-top: 1px solid var(--border-color);">
+                <div style="font-weight:600; color:var(--text-main); margin-bottom:8px; font-size:11px;">Сума</div>
+                <div style="display:flex; gap:6px; align-items:center;">
+                    <span style="color:var(--text-secondary);">від</span>
+                    <input type="number" id="filter-sum-from" placeholder="0" style="width:100px; padding:4px 6px; border:1px solid var(--border-color); border-radius:6px; font-size:10px;">
+                    <span style="color:var(--text-secondary);">до</span>
+                    <input type="number" id="filter-sum-to" placeholder="999..." style="width:100px; padding:4px 6px; border:1px solid var(--border-color); border-radius:6px; font-size:10px;">
+                </div>
+            </div>
+
             <div class="filter-section" data-tabs="tab_1" style="padding: 14px 0; border-top: 1px solid var(--border-color);">
                 <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Статус оплати</div>
                 <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="status" data-value="Потребує оплати"> Потребує оплати</label>
@@ -807,6 +817,8 @@
         function applyFilters() {
             const dateFrom = document.getElementById('filter-date-from').value;
             const dateTo = document.getElementById('filter-date-to').value;
+            const sumFrom = parseFloat(document.getElementById('filter-sum-from').value);
+            const sumTo = parseFloat(document.getElementById('filter-sum-to').value);
             const statusVals = getCheckedValues('status');
             const typeVals = getCheckedValues('type');
             const contractStatusVals = getCheckedValues('contract-status');
@@ -822,6 +834,7 @@
 
             // Date column index per tab
             const dateColMap = { tab_1: 1, tab_2: 0, tab_4: 4 };
+            const sumColMap = { tab_1: 5, tab_2: 2, tab_4: 6 };
 
             APP_DATA.forEach((tab, idx) => {
                 let filtered = originalRows[idx].slice();
@@ -836,6 +849,20 @@
                         if (!cellDate) return true;
                         if (from && cellDate < from) return false;
                         if (to && cellDate > to) return false;
+                        return true;
+                    });
+                }
+
+                // Sum filter (applies to all tabs)
+                const sumColIdx = sumColMap[tab.id];
+                if ((!isNaN(sumFrom) || !isNaN(sumTo)) && sumColIdx !== undefined) {
+                    filtered = filtered.filter(r => {
+                        const cellText = stripHtml(r.d[sumColIdx]);
+                        // Remove spaces, currency symbols, and convert to number
+                        const val = parseFloat(cellText.replace(/[^\d.-]/g, ''));
+                        if (isNaN(val)) return true;
+                        if (!isNaN(sumFrom) && val < sumFrom) return false;
+                        if (!isNaN(sumTo) && val > sumTo) return false;
                         return true;
                     });
                 }
@@ -890,6 +917,8 @@
             document.querySelectorAll('#drawer-filter input[type="checkbox"]').forEach(cb => cb.checked = false);
             document.getElementById('filter-date-from').value = '';
             document.getElementById('filter-date-to').value = '';
+            document.getElementById('filter-sum-from').value = '';
+            document.getElementById('filter-sum-to').value = '';
             APP_DATA.forEach((tab, idx) => {
                 tab.rows = originalRows[idx].slice();
             });
