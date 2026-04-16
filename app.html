@@ -437,6 +437,16 @@
                 </div>
             </div>
 
+            <div class="filter-section" data-tabs="tab_1" style="padding: 14px 0; border-top: 1px solid var(--border-color);">
+                <div style="font-weight:600; color:var(--text-main); margin-bottom:8px; font-size:11px;">Термін оплати</div>
+                <div style="display:flex; gap:6px; align-items:center;">
+                    <span style="color:var(--text-secondary);">з</span>
+                    <input type="date" id="filter-due-from" style="width:120px; padding:4px 6px; border:1px solid var(--border-color); border-radius:6px; font-size:10px;">
+                    <span style="color:var(--text-secondary);">по</span>
+                    <input type="date" id="filter-due-to" style="width:120px; padding:4px 6px; border:1px solid var(--border-color); border-radius:6px; font-size:10px;">
+                </div>
+            </div>
+
             <div class="filter-section" data-tabs="tab_1,tab_2,tab_4" style="padding: 14px 0; border-top: 1px solid var(--border-color);">
                 <div style="font-weight:600; color:var(--text-main); margin-bottom:8px; font-size:11px;">Сума</div>
                 <div style="display:flex; gap:6px; align-items:center;">
@@ -818,6 +828,8 @@
         function applyFilters() {
             const dateFrom = document.getElementById('filter-date-from').value;
             const dateTo = document.getElementById('filter-date-to').value;
+            const dueFrom = document.getElementById('filter-due-from').value;
+            const dueTo = document.getElementById('filter-due-to').value;
             const sumFrom = parseFloat(document.getElementById('filter-sum-from').value);
             const sumTo = parseFloat(document.getElementById('filter-sum-to').value);
             const statusVals = getCheckedValues('status');
@@ -847,6 +859,20 @@
                     const to = dateTo ? new Date(dateTo) : null;
                     filtered = filtered.filter(r => {
                         const cellDate = parseDMY(stripHtml(r.d[dateColIdx]));
+                        if (!cellDate) return true;
+                        if (from && cellDate < from) return false;
+                        if (to && cellDate > to) return false;
+                        return true;
+                    });
+                }
+
+                // Due Date filter (tab_1 only)
+                if (tab.id === 'tab_1' && (dueFrom || dueTo)) {
+                    const from = dueFrom ? new Date(dueFrom) : null;
+                    const to = dueTo ? new Date(dueTo) : null;
+                    filtered = filtered.filter(r => {
+                        // col index 8 = Термін оплати
+                        const cellDate = parseDMY(stripHtml(r.d[8]));
                         if (!cellDate) return true;
                         if (from && cellDate < from) return false;
                         if (to && cellDate > to) return false;
@@ -934,6 +960,8 @@
             document.querySelectorAll('#drawer-filter input[type="checkbox"]').forEach(cb => cb.checked = false);
             document.getElementById('filter-date-from').value = '';
             document.getElementById('filter-date-to').value = '';
+            document.getElementById('filter-due-from').value = '';
+            document.getElementById('filter-due-to').value = '';
             document.getElementById('filter-sum-from').value = '';
             document.getElementById('filter-sum-to').value = '';
             APP_DATA.forEach((tab, idx) => {
