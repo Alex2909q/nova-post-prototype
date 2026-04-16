@@ -465,10 +465,11 @@
                 <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="contract-status" data-value="Призупинений"> Призупинений</label>
             </div>
 
-            <div class="filter-section" data-tabs="tab_4" style="padding: 14px 0; border-top: 1px solid var(--border-color);">
-                <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Валюта договору</div>
-                <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="currency" data-value="UAH"> UAH</label>
-                <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="currency" data-value="PLN"> PLN</label>
+            <div class="filter-section" data-tabs="tab_1,tab_2,tab_4" style="padding: 14px 0; border-top: 1px solid var(--border-color);">
+                <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Валюта</div>
+                <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="currency" data-value="UAH"> UAH (₴)</label>
+                <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="currency" data-value="PLN"> PLN</label>
+                <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="currency" data-value="USD"> USD ($)</label>
             </div>
 
             <div class="filter-section" data-tabs="tab_4" style="padding: 14px 0; border-top: 1px solid var(--border-color);">
@@ -890,19 +891,35 @@
                             return contractStatusVals.some(v => cellText.includes(v));
                         });
                     }
-                    if (currencyVals.length > 0) {
-                        // col index 5 = Валюта
-                        filtered = filtered.filter(r => {
-                            const cellText = stripHtml(r.d[5]);
-                            return currencyVals.some(v => cellText === v);
-                        });
-                    }
                     if (debtChecked) {
                         // col index 6 = Сума до сплати - show only with amount > 0
                         filtered = filtered.filter(r => {
                             const numVal = parseFloat(stripHtml(r.d[6]).replace(/[^\d.-]/g, ''));
                             return numVal > 0;
                         });
+                    }
+                }
+
+                if (currencyVals.length > 0) {
+                    if (tab.id === 'tab_4') {
+                        // col index 5 = Валюта
+                        filtered = filtered.filter(r => {
+                            const cellText = stripHtml(r.d[5]);
+                            return currencyVals.some(v => cellText === v);
+                        });
+                    } else {
+                        // For tab_1 and tab_2, currency is in the sum column (sumColIdx)
+                        const sumColIdx = sumColMap[tab.id];
+                        if (sumColIdx !== undefined) {
+                            const currencyMap = { 'UAH': '₴', 'USD': '$', 'PLN': 'PLN' };
+                            filtered = filtered.filter(r => {
+                                const cellText = stripHtml(r.d[sumColIdx]);
+                                return currencyVals.some(v => {
+                                    const symbol = currencyMap[v] || v;
+                                    return cellText.includes(symbol);
+                                });
+                            });
+                        }
                     }
                 }
 
