@@ -463,6 +463,12 @@
                 <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="status" data-value="Сплачено"> Сплачено</label>
             </div>
 
+            <div class="filter-section" data-tabs="tab_2" style="padding: 14px 0; border-top: 1px solid var(--border-color);">
+                <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Тип операції</div>
+                <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="op-type" data-value="Переказ коштів"> Переказ коштів</label>
+                <label style="display:flex; gap:6px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="op-type" data-value="Оплата рахунку"> Оплата рахунку</label>
+            </div>
+
             <div class="filter-section" data-tabs="tab_4" style="padding: 14px 0; border-top: 1px solid var(--border-color);">
                 <div style="font-weight:600; color:var(--text-main); margin-bottom:5px; font-size:11px;">Тип контракту</div>
                 <label style="display:flex; gap:6px; margin-bottom:4px; align-items:center;"><input type="checkbox" class="custom-checkbox" data-filter="type" data-value="Логістичний"> Логістичний</label>
@@ -836,6 +842,7 @@
             const typeVals = getCheckedValues('type');
             const contractStatusVals = getCheckedValues('contract-status');
             const currencyVals = getCheckedValues('currency');
+            const opTypeVals = getCheckedValues('op-type');
             const debtChecked = document.querySelector('#drawer-filter input[data-filter="debt"]')?.checked;
 
             // Helper: parse DD.MM.YYYY to Date
@@ -899,6 +906,14 @@
                     filtered = filtered.filter(r => {
                         const cellText = stripHtml(r.d[6]);
                         return statusVals.some(v => cellText.includes(v));
+                    });
+                }
+
+                if (tab.id === 'tab_2' && opTypeVals.length > 0) {
+                    // col index 1 = Операція
+                    filtered = filtered.filter(r => {
+                        const cellText = stripHtml(r.d[1]);
+                        return opTypeVals.some(v => cellText === v);
                     });
                 }
 
