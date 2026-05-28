@@ -1101,14 +1101,38 @@ body {
 .slide.active #slide4 .results-row-two .stat-card:nth-child(1) { animation-delay: 0.6s; }
 .slide.active #slide4 .results-row-two .stat-card:nth-child(2) { animation-delay: 0.7s; }
 
-/* Slide 5: Strategy 3-Column Roadmap */
-.strategy-columns {
+/* Slide 5: Strategy 3-Column Roadmap (New Layout) */
+.strategy-layout-new {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    height: 72vh;
+}
+
+.strategy-top-row {
+    display: flex;
+    gap: 25px;
+    flex: 1;
+}
+
+.strategy-top-row .strategy-column {
+    flex: 1;
+}
+
+.strategy-bottom-row {
+    flex: 0 0 auto;
+}
+
+.strategy-bottom-row .strategy-column {
+    width: 100%;
+}
+
+.horizontal-items {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    width: 100%;
-    align-items: start;
-    height: 72vh;
+    flex-direction: row !important;
 }
 
 .strategy-column {
