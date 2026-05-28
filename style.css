@@ -1105,15 +1105,17 @@ body {
 .strategy-slide-layout {
     display: flex;
     gap: 30px;
-    height: 72vh;
+    height: 82vh;
 }
 
 .strategy-layout-new {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 15px;
     height: 100%;
+    overflow-y: auto;
+    padding-right: 10px;
 }
 
 .slide5-videos {
@@ -1135,7 +1137,7 @@ body {
 
 .strategy-top-row {
     display: flex;
-    gap: 25px;
+    gap: 15px;
     flex: 1;
 }
 
@@ -1154,7 +1156,7 @@ body {
 .horizontal-items {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 15px;
     flex-direction: column !important;
 }
 
