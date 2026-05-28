@@ -1117,7 +1117,7 @@ body {
 }
 
 .slide5-videos {
-    flex: 1.5;
+    flex: 2.5;
     display: flex;
     flex-direction: column;
     gap: 20px;
