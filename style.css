@@ -864,7 +864,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 72vh;
+    height: 80vh;
     width: 100%;
 }
 
@@ -889,7 +889,7 @@ body {
 }
 
 .vpc-image {
-    max-height: 67vh;
+    max-height: 74vh;
     max-width: 100%;
     border-radius: 12px;
     object-fit: contain;
