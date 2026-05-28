@@ -89,7 +89,7 @@ body {
     background-color: var(--bg-dark);
 }
 
-#slide1, #slide7 {
+#slide1, #slide6 {
     justify-content: center;
     align-items: center;
     padding-top: 0;
@@ -809,104 +809,374 @@ body {
     to { opacity: 1; transform: scale(1); }
 }
 
-/* Slide 6 Roadmap Cards styling */
-.roadmap-card {
-    padding: 28px 24px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    min-height: 210px;
+/* ==========================================================================
+   CONSOLIDATED SLIDES STYLING (Slides 2, 3, 4, 5, 6)
+   ========================================================================== */
+
+/* Slide 2: North Star Banner */
+.north-star-banner {
+    background: linear-gradient(135deg, rgba(237, 27, 36, 0.18) 0%, rgba(237, 27, 36, 0.04) 100%);
+    border: 1px solid rgba(237, 27, 36, 0.35);
+    border-radius: 16px;
+    padding: 16px 24px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 35px rgba(237, 27, 36, 0.15), inset 0 0 15px rgba(237, 27, 36, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
 }
 
-.roadmap-card .card-bottom {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: flex-end !important;
-    width: 100% !important;
-    margin-top: auto !important;
+.north-star-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transform: skewX(-30deg);
+    animation: shine 8s infinite linear;
 }
 
-.roadmap-card .stat-label {
-    font-size: 16.5px !important;
-    font-weight: 600 !important;
-    line-height: 1.4 !important;
-    color: #fff !important;
-    margin: 0 !important;
+@keyframes shine {
+    0% { transform: skewX(-30deg) translateX(-100%); }
+    100% { transform: skewX(-30deg) translateX(100%); }
 }
 
-.roadmap-card .release-tag {
-    font-size: 11px !important;
-    font-weight: 500 !important;
-    color: rgba(255, 255, 255, 0.4) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.8px !important;
-    white-space: nowrap !important;
-    margin-left: 15px !important;
-    margin-bottom: 3px !important;
+.north-star-tag {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--primary-red);
 }
 
-/* Sequential sweep-in animation for roadmap cards */
-.slide.active .roadmap-card {
+.north-star-title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Slide 3: VPC (Value Proposition Canvas) Styles */
+.vpc-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 72vh;
+    width: 100%;
+}
+
+.vpc-container {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 15px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 100%;
+    width: auto;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
+}
+
+.vpc-container:hover {
+    transform: translateY(-5px) scale(1.01);
+    border-color: rgba(237, 27, 36, 0.35);
+}
+
+.vpc-image {
+    max-height: 67vh;
+    max-width: 100%;
+    border-radius: 12px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Slide 4: Merged Results & Metrics Styles */
+.results-metrics-layout {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    align-items: stretch;
+    height: 72vh;
+}
+
+.metrics-side {
+    flex: 1.25;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.results-side {
+    flex: 0.75;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.achievements-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 18px 22px;
+    backdrop-filter: blur(10px);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.achievements-title {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #ffd7d7;
+    border-left: 3px solid var(--primary-red);
+    padding-left: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.achievements-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.achievements-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: #e0e0e0;
+}
+
+.achievements-list li strong {
+    color: #fff;
+}
+
+.check-icon {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    margin-top: 1px;
+}
+
+.single-video {
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.single-video video {
+    width: 100%;
+    height: calc(100% - 25px);
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.video-caption {
+    font-size: 10.5px;
+    color: #ccc;
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+}
+
+/* Sequential Entry Animations for Slide 4 Cards */
+.slide.active #slide4 .metrics-grid .stat-card {
     animation: bounceInCard 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     opacity: 0;
 }
-.slide.active .roadmap-card:nth-child(1) { animation-delay: 0.15s; }
-.slide.active .roadmap-card:nth-child(2) { animation-delay: 0.25s; }
-.slide.active .roadmap-card:nth-child(3) { animation-delay: 0.35s; }
-.slide.active .roadmap-card:nth-child(4) { animation-delay: 0.45s; }
-.slide.active .roadmap-card:nth-child(5) { animation-delay: 0.55s; }
+.slide.active #slide4 .metrics-grid .stat-card:nth-child(1) { animation-delay: 0.1s; }
+.slide.active #slide4 .metrics-grid .stat-card:nth-child(2) { animation-delay: 0.2s; }
+.slide.active #slide4 .metrics-grid .stat-card:nth-child(3) { animation-delay: 0.3s; }
+.slide.active #slide4 .metrics-grid .stat-card:nth-child(4) { animation-delay: 0.4s; }
+.slide.active #slide4 .metrics-grid .stat-card:nth-child(5) { animation-delay: 0.5s; }
+.slide.active #slide4 .metrics-grid .stat-card:nth-child(6) { animation-delay: 0.6s; }
 
-/* Slide 6 Roadmap Grid */
-.roadmap-grid {
-    display: grid !important;
-    grid-template-columns: repeat(6, 1fr) !important;
-    gap: 40px !important;
+/* Slide 5: Strategy 3-Column Roadmap */
+.strategy-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
     width: 100%;
+    align-items: stretch;
+    height: 72vh;
 }
 
-/* Slide 5 Plans Grid & Cards */
-.plans-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 40px !important;
-    width: 100%;
+.strategy-column {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
 }
 
-.plan-card {
-    padding: 28px 24px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    gap: 12px !important;
-    min-height: 220px;
+.strategy-column.red-theme {
+    border-top: 4px solid var(--primary-red);
+    background: linear-gradient(180deg, rgba(237, 27, 36, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-.plan-card .plan-title {
-    font-size: 20px !important;
-    font-weight: 600 !important;
-    color: #fff;
-    line-height: 1.3;
+.strategy-column.yellow-theme {
+    border-top: 4px solid #ff9800;
+    background: linear-gradient(180deg, rgba(255, 152, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-.plan-card .plan-desc {
-    font-size: 15px !important;
-    font-weight: 400 !important;
-    color: #ccc;
-    line-height: 1.5;
+.strategy-column.green-theme {
+    border-top: 4px solid #4caf50;
+    background: linear-gradient(180deg, rgba(76, 175, 80, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-.task-card-image {
-    width: 124px;
-    height: 124px;
-    border-radius: 14px;
+.column-header-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.column-header-block h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.column-dot {
+    font-size: 14px;
+}
+
+.column-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    scrollbar-width: none; /* Hide scrollbars in Firefox */
+}
+.column-items::-webkit-scrollbar {
+    display: none; /* Hide scrollbars in Chrome/Safari */
+}
+
+.strategy-item-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease, border-color 0.3s ease;
+}
+
+.strategy-item-card:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.red-theme .strategy-item-card:hover { border-color: rgba(237, 27, 36, 0.4); }
+.yellow-theme .strategy-item-card:hover { border-color: rgba(255, 152, 0, 0.4); }
+.green-theme .strategy-item-card:hover { border-color: rgba(76, 175, 80, 0.4); }
+
+.strategy-item-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
     object-fit: cover;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
-.stat-card:hover .task-card-image {
-    transform: scale(1.12) rotate(4deg);
-    border-color: rgba(237, 27, 36, 0.5);
-    box-shadow: 0 8px 20px rgba(237, 27, 36, 0.25);
+.strategy-item-card:hover .strategy-item-image {
+    transform: scale(1.1) rotate(2deg);
 }
+
+.strategy-item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.strategy-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.strategy-item-header h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+}
+
+.item-release-tag {
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 5px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.strategy-item-card p {
+    font-size: 11px;
+    color: #cccccc;
+    line-height: 1.35;
+    margin: 0;
+}
+
+/* Sequential Entry Animations for Strategy Columns */
+.slide.active .strategy-item-card {
+    animation: bounceInCard 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+}
+
+.slide.active .red-theme .strategy-item-card:nth-child(1) { animation-delay: 0.15s; }
+.slide.active .red-theme .strategy-item-card:nth-child(2) { animation-delay: 0.25s; }
+.slide.active .red-theme .strategy-item-card:nth-child(3) { animation-delay: 0.35s; }
+
+.slide.active .yellow-theme .strategy-item-card:nth-child(1) { animation-delay: 0.2s; }
+.slide.active .yellow-theme .strategy-item-card:nth-child(2) { animation-delay: 0.3s; }
+.slide.active .yellow-theme .strategy-item-card:nth-child(3) { animation-delay: 0.4s; }
+
+.slide.active .green-theme .strategy-item-card:nth-child(1) { animation-delay: 0.25s; }
+.slide.active .green-theme .strategy-item-card:nth-child(2) { animation-delay: 0.35s; }
+.slide.active .green-theme .strategy-item-card:nth-child(3) { animation-delay: 0.45s; }
+.slide.active .green-theme .strategy-item-card:nth-child(4) { animation-delay: 0.55s; }
