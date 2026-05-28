@@ -896,7 +896,210 @@ body {
     display: block;
 }
 
-/* Slide 4 styles cleaned up */
+/* Slide 4: Наші результати Styles */
+.moldova-victory-card {
+    background: linear-gradient(135deg, rgba(237, 27, 36, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(237, 27, 36, 0.25);
+    border-radius: 16px;
+    padding: 16px 24px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.moldova-victory-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(237, 27, 36, 0.45);
+}
+
+.moldova-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.trophy-icon {
+    font-size: 32px;
+    filter: drop-shadow(0 2px 5px rgba(255, 215, 0, 0.3));
+}
+
+.moldova-title-group h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffd7d7;
+    margin: 0 0 4px 0;
+}
+
+.moldova-title-group p {
+    font-size: 13.5px;
+    color: #ffffff;
+    margin: 0;
+    opacity: 0.85;
+}
+
+.csi-warning-note {
+    background: rgba(255, 152, 0, 0.07);
+    border: 1px solid rgba(255, 152, 0, 0.2);
+    border-radius: 10px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+    color: #ffb74d;
+}
+
+.warning-dot {
+    font-size: 14px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.results-grid .stat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.stat-header .stat-value {
+    font-size: 32px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+}
+
+.stat-header .stat-icon {
+    font-size: 24px;
+    opacity: 0.7;
+}
+
+.results-grid .stat-card .stat-label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+}
+
+.results-grid .stat-card .stat-label strong {
+    font-size: 13.5px;
+    color: #ffd7d7;
+    font-weight: 600;
+}
+
+.results-grid .stat-card .stat-label p {
+    font-size: 11px;
+    color: #cccccc;
+    line-height: 1.35;
+    margin: 0;
+}
+
+.results-row-two {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.results-row-two .stat-card.horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 24px !important;
+}
+
+.horizontal-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 90px;
+}
+
+.horizontal-left .stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.horizontal-left .stat-icon {
+    font-size: 22px;
+    opacity: 0.75;
+}
+
+.results-row-two .stat-card.horizontal .stat-label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+}
+
+.results-row-two .stat-card.horizontal .stat-label strong {
+    font-size: 14px;
+    color: #ffd7d7;
+    font-weight: 600;
+}
+
+.results-row-two .stat-card.horizontal .stat-label p {
+    font-size: 11.5px;
+    color: #cccccc;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.highlight-kpi {
+    border: 1px solid rgba(237, 27, 36, 0.4) !important;
+    background: linear-gradient(135deg, rgba(237, 27, 36, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
+    box-shadow: 0 10px 30px rgba(237, 27, 36, 0.1) !important;
+}
+
+.highlight-kpi:hover {
+    border-color: rgba(237, 27, 36, 0.7) !important;
+    box-shadow: 0 15px 30px rgba(237, 27, 36, 0.25) !important;
+}
+
+/* Sequential Entry Animations for Slide 4 Cards */
+.slide.active #slide4 .moldova-victory-card {
+    animation: bounceInCard 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+}
+
+.slide.active #slide4 .results-grid .stat-card {
+    animation: bounceInCard 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+}
+
+.slide.active #slide4 .results-row-two .stat-card {
+    animation: bounceInCard 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+}
+
+.slide.active #slide4 .moldova-victory-card { animation-delay: 0.1s; }
+.slide.active #slide4 .results-grid .stat-card:nth-child(1) { animation-delay: 0.2s; }
+.slide.active #slide4 .results-grid .stat-card:nth-child(2) { animation-delay: 0.3s; }
+.slide.active #slide4 .results-grid .stat-card:nth-child(3) { animation-delay: 0.4s; }
+.slide.active #slide4 .results-grid .stat-card:nth-child(4) { animation-delay: 0.5s; }
+.slide.active #slide4 .results-row-two .stat-card:nth-child(1) { animation-delay: 0.6s; }
+.slide.active #slide4 .results-row-two .stat-card:nth-child(2) { animation-delay: 0.7s; }
 
 /* Slide 5: Strategy 3-Column Roadmap */
 .strategy-columns {
