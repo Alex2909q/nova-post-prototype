@@ -1310,3 +1310,127 @@ body {
 .slide.active .yellow-theme .strategy-item-card:nth-child(1) { animation-delay: 0.15s; }
 
 .slide.active .green-theme .strategy-item-card:nth-child(1) { animation-delay: 0.20s; }
+
+/* ========================================= */
+/* RESPONSIVE DESIGN (MOBILE ADAPTATION)     */
+/* ========================================= */
+
+@media (max-width: 768px) {
+    /* Better mobile scrolling */
+    .slide {
+        padding: 30px 15px;
+        overflow-y: auto !important;
+        align-items: flex-start !important;
+    }
+    
+    .slide-header {
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        padding-top: 10px;
+    }
+    
+    .slide-logo {
+        font-size: 10px;
+    }
+    
+    .slide-title {
+        font-size: 15px;
+        line-height: 1.3;
+    }
+    
+    .content h1 {
+        font-size: 28px;
+        text-align: center;
+    }
+    
+    .content p {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    /* Move pagination to the bottom */
+    .pagination {
+        top: auto;
+        bottom: 10px;
+        right: 50%;
+        transform: translateX(50%);
+        flex-direction: row;
+        gap: 12px;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 8px 15px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+    }
+    
+    /* Slide 2: Feature Row */
+    .feature-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .feature-card {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Slide 3: VPC */
+    .vpc-content {
+        height: auto;
+        margin-top: 15px;
+    }
+    
+    /* Slide 4: Results */
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .results-row-two {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .moldova-victory-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .horizontal-left {
+        flex: none;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-right: 0;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    
+    /* Slides 5 & 6: Strategy Layout */
+    .strategy-slide-layout {
+        flex-direction: column;
+        height: auto;
+        gap: 20px;
+    }
+    
+    .strategy-layout-new, .slide5-videos {
+        width: 100%;
+        flex: none;
+        overflow-y: visible;
+        padding-right: 0;
+    }
+    
+    .strategy-top-row {
+        flex-direction: column !important;
+    }
+    
+    .slide5-videos video {
+        margin-top: 10px;
+        width: 100%;
+    }
+    
+    /* Q&A / Thank you */
+    .qa-title {
+        font-size: 32px;
+    }
+}
