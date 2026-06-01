@@ -83,7 +83,7 @@ body {
     align-items: flex-start;
     justify-content: flex-start;
     position: relative;
-    padding: 120px 50px 40px 50px;
+    padding: 90px 50px 30px 50px;
     background-size: cover;
     background-position: center;
     background-color: var(--bg-dark);
@@ -1194,7 +1194,7 @@ body {
 }
 
 .column-header-block h3 {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     color: #ffffff;
     margin: 0;
@@ -1278,7 +1278,7 @@ body {
 }
 
 .s-card-title {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 1.3;
     margin: 0;
@@ -1291,9 +1291,9 @@ body {
 .green-theme  .s-card-title { color: #b9f0bb; }
 
 .s-card-desc {
-    font-size: 11px;
+    font-size: 14px;
     color: #cccccc;
-    line-height: 1.35;
+    line-height: 1.4;
     margin: 0;
 }
 
